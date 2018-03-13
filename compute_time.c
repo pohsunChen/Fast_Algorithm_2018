@@ -1,3 +1,4 @@
+// Teacher's version
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -15,6 +16,7 @@ int main()
 		a = a-b;
 	}
 	t2 = clock();
+	
 	printf("(+,-) time:%f\n",(t2-t1)/(double) CLOCKS_PER_SEC/3.0);
 	printf("(a,b)=%f %f\n", a,b);
 	for(i=0;i<N;++i)
@@ -46,7 +48,7 @@ int main()
 	printf("(rand) time:%f\n",(t2-t1)/(double) CLOCKS_PER_SEC);
 	printf("r=%d\n", r);
 
-	short A[10000][10000];
+	short A[1000][1000];
 	t1 = clock();
 	for(i=0;i<N;i++)
 	{
@@ -54,7 +56,7 @@ int main()
 	}
 	t2 = clock();
 	printf("(rand) time:%f\n",(t2-t1)/(double) CLOCKS_PER_SEC);
-	printf("r=%d\n", A[9999][9999]);
-
+	printf("r=%d\n", A[999][999]);
+	
 	return;
 } 
