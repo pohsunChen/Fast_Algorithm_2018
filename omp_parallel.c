@@ -17,7 +17,7 @@ int main()
 		printf("Hello Program\n");
 	}
 	
-	#pragma omp parallel
+	#pragma omp parallel for
 	for(i=0;i<10;++i)
 	{
 		j = i;
@@ -30,13 +30,15 @@ int main()
 	{
 		j += i;
 	}
-	printf("sum(1..1000) = %d\n",j);
-
+	printf("sum(1..10) = %d\n",j);
+	
+	
 	j = 0;
-	#pragma omp parallel for private(i)
-	for(i=0;i<=1000;++i)
+	#pragma omp parallel for private(i) reduction(+: j)
+	for(i=0;i<=10;++i)
 	{
 		j += i;
+		printf("i=%d, j=%d, thread=%d\n",i, j, omp_get_thread_num());
 	}
 	printf("sum(1..10) = %d\n",j);
 	

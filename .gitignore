@@ -1,3 +1,4 @@
 *.asv
 *.exe
 omp_parallel.exe
+*.exe
