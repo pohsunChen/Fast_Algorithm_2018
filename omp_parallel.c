@@ -17,11 +17,11 @@ int main()
 		printf("Hello Program\n");
 	}
 	
-	#pragma omp parallel for 
+	#pragma omp parallel for
 	for(i=0;i<10;++i)
 	{
 		j = i;
-		printf("%d %d\n",i,omp_get_thread_num());
+		printf("magic %d %d\n",i,omp_get_thread_num());
 	}
 	printf("j = %d\n",j);
 	
