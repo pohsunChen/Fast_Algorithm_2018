@@ -17,7 +17,7 @@ int main()
 		printf("Hello Program\n");
 	}
 	
-	#pragma omp parallel for
+	#pragma omp parallel
 	for(i=0;i<10;++i)
 	{
 		j = i;
