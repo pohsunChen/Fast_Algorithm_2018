@@ -13,7 +13,7 @@ int main()
 	ot1 = omp_get_wtime();
 	#pragma omp parallel num_threads(8)
 	{
-		printf("Hello world (%d,%d,%f) \n",omp_get_thread_num(),omp_get_num_threads(),omp_get_wtime()-ot1);
+		printf("Hello world! (%d,%d,%f) \n",omp_get_thread_num(),omp_get_num_threads(),omp_get_wtime()-ot1);
 		printf("Hello Program\n");
 	}
 	
