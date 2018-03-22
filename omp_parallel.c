@@ -34,9 +34,10 @@ int main()
 	
 	
 	j = 0;
-	#pragma omp parallel for private(i) reduction(+: j)
+	#pragma omp parallel for private(i) // reduction(+: j) // 讓j變成private等全部做完再+起來 
 	for(i=0;i<=10;++i)
 	{
+		#pragma omp atomic // (避免同時存取j) 
 		j += i;
 		printf("i=%d, j=%d, thread=%d\n",i, j, omp_get_thread_num());
 	}
