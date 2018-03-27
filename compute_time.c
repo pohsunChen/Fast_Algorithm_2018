@@ -1,4 +1,3 @@
-// Teacher's version
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -46,13 +45,8 @@ int main()
 		a = a-b;
 	}
 	t2 = clock();
-<<<<<<< HEAD
-	
-	printf("(+,-) time:%f\n",(t2-t1)/(double) CLOCKS_PER_SEC/3.0);
-=======
 	T1 = (t2-t1)/(double) CLOCKS_PER_SEC;
 	printf("(+,-) time x 3 + 1 loop:%f\n",T1);
->>>>>>> 92e555ada53d2ba7c83601c807817aaede07f2e2
 	printf("(a,b)=%f %f\n", a,b);
 	t1 = clock();
 	#pragma omp parallel
@@ -135,14 +129,6 @@ int main()
 	printf("(rand) time:%f\n",(t2-t1)/(double) CLOCKS_PER_SEC);
 	printf("r=%d\n", r);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	short A[1000][1000];
-=======
-	//short A[10000][10000];
->>>>>>> 92e555ada53d2ba7c83601c807817aaede07f2e2
-=======
->>>>>>> f68111cb990cbad0b04f6d34b32d9200f6aba981
 	t1 = clock();
 	for(i=0;i<N;i++)
 	{
@@ -150,15 +136,6 @@ int main()
 	}
 	t2 = clock();
 	printf("(rand) time:%f\n",(t2-t1)/(double) CLOCKS_PER_SEC);
-<<<<<<< HEAD
-<<<<<<< HEAD
-	printf("r=%d\n", A[999][999]);
-	
-=======
-	//printf("r=%d\n", A[9999][9999]);
-=======
->>>>>>> f68111cb990cbad0b04f6d34b32d9200f6aba981
 
->>>>>>> 92e555ada53d2ba7c83601c807817aaede07f2e2
 	return;
 } 

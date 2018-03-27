@@ -14,23 +14,28 @@ int main()
 	
 	#pragma omp parallel num_threads(2) // 把下面的工作平行處理 
 	{
-<<<<<<< HEAD
-		printf("Hello world! (%d,%d,%f) \n",omp_get_thread_num(),omp_get_num_threads(),omp_get_wtime()-ot1);
-		printf("Hello Program\n");
-=======
 		printf("Hello World A(%d,%d,%f)\n",omp_get_thread_num(),omp_get_num_threads(),omp_get_wtime()-ot1);
 		printf("Hello World B(%d,%d,%f)\n",omp_get_thread_num(),omp_get_num_threads(),omp_get_wtime()-ot1);
 	}
 	// 從列印的結果，你會發現
 	// 這兩行指令在同一個thread中是循序的，在不同的thread中先後不一定 
 	j = 0;
-	#pragma omp parallel for 
+	#pragma omp parallel for // by default, i is private, others is shared
 	for(i=0;i<10;++i) {
 		j += i;
->>>>>>> pr/1
 	}
 	printf("(without any consideration) j = %d\n", j);
+	/* 
+		for example, we have 4 workers.
 
+	shared	j=0	can be read and written by any workers below
+		
+				worker 1	worker 2	worker 3	worker 4
+	private	i	  i=1		  i=2		  i=3		  i=4
+	工作:		 j=j+i		 j=j+i		 j=j+i		 j=j+i
+	執行順序	   1		   1		   2		   3	 (相同表幾乎同時)
+	             j=0+1		 j=0+2 ==> 看哪一個最後送出去， j 就是那個值    
+	*/
 	j = 0;
 	#pragma omp parallel for 
 	for(i=0;i<10;++i) {
@@ -45,13 +50,6 @@ int main()
 	}
 	printf("(reduction) j = %d\n", j);
 	
-<<<<<<< HEAD
-	#pragma omp parallel for
-	for(i=0;i<10;++i)
-	{
-		j = i;
-		printf("magic %d %d\n",i,omp_get_thread_num());
-=======
 	// sum 0~9
 	int JG[10];
 	j = 0;
@@ -108,7 +106,6 @@ int main()
 	{
 		j = i;
 		// printf("%d %d\n",i,omp_get_thread_num());
->>>>>>> pr/1
 	}
 	// printf("j = %d\n",j);
 	
@@ -120,17 +117,6 @@ int main()
 		//printf("%d %d\n",i);
 	}
 	printf("sum(1..10) = %d\n",j);
-<<<<<<< HEAD
-	
-	
-	j = 0;
-	#pragma omp parallel for private(i) // reduction(+: j) // 讓j變成private等全部做完再+起來 
-	for(i=0;i<=10;++i)
-	{
-		#pragma omp atomic // (避免同時存取j) 
-		j += i;
-		printf("i=%d, j=%d, thread=%d\n",i, j, omp_get_thread_num());
-=======
 
 	for(k=0;k<100;++k)
 	{
@@ -162,7 +148,6 @@ int main()
 		if(j != 55) {
 			printf("The summation is Wrong! %d\n", k);
 		}
->>>>>>> pr/1
 	}
 	
 	t1 = clock();
