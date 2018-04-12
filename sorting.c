@@ -3,7 +3,8 @@
 #include <omp.h>
 #include <math.h>
 #include <time.h>
-#define DEBUG 0
+#define DEBUG 1
+#define DEGUG2 0 
 int quicksort1(int *x, int left, int right);
 int quicksort2(int *x, int left, int right);
 
@@ -16,7 +17,7 @@ int main()
 
 	srand( time(NULL) );
 
-	for(N=40000;N<=40000;N*=2)
+	for(N=10;N<=10;N*=2)
 	{
 		x = (int *) malloc( N * sizeof(int) );
 		y = (int *) malloc( N * sizeof(int) );
@@ -156,7 +157,7 @@ int quicksort2(int *x, int left, int right)
 		{
       		while(i < right && pivot >= x[i]) i++; 
       		while(j >  left && pivot <  x[j]) j--; 
-      		#if DEBUG 
+      		#if DEBUG2 
 			printf("%d %d %d\n", i,j,pivot);
 			#endif
       		if(i>=j) break;
